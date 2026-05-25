@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Mastery — 120 Day Journey to Pro</title>
+    <meta name="description" content="Master Linux from beginner to pro with a comprehensive 120-day learning journey. Hands-on practice with an integrated terminal emulator.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐧</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Splash Loader -->
+    <div id="splash-loader" class="splash-loader">
+        <div class="splash-content">
+            <div class="splash-penguin">🐧</div>
+            <div class="splash-text">Linux<span class="accent">Mastery</span></div>
+            <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+            <div class="splash-sub">Initializing your learning environment...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="header-left">
+            <button id="sidebar-toggle" class="icon-btn hamburger" title="Toggle Sidebar">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="logo">
+                <span class="logo-icon">🐧</span>
+                <h1>Linux<span class="accent">Mastery</span></h1>
+            </div>
+            <span class="tagline">120 Days to Pro</span>
+        </div>
+        <div class="header-center">
+            <div class="search-container">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <input type="text" id="search-input" placeholder="Search days, commands, topics..." autocomplete="off" />
+                <div id="search-results" class="search-results hidden"></div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="streak-badge" id="streak-badge" title="Current Streak">
+                <span class="streak-icon">🔥</span>
+                <span id="streak-count">0</span>
+            </div>
+            <div class="progress-ring-container" title="Overall Progress">
+                <svg class="progress-ring" viewBox="0 0 44 44">
+                    <circle class="progress-ring-bg" cx="22" cy="22" r="18" fill="none" stroke-width="3"/>
+                    <circle class="progress-ring-fill" id="progress-ring-fill" cx="22" cy="22" r="18" fill="none" stroke-width="3" stroke-dasharray="113.1" stroke-dashoffset="113.1"/>
+                </svg>
+                <span class="progress-ring-text" id="progress-percent">0%</span>
+            </div>
+            <button id="terminal-toggle" class="icon-btn terminal-btn" title="Toggle Terminal (Ctrl+`)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-inner">
+                <div class="sidebar-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-completed">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="stat-total">0</span>
+                        <span class="stat-label">Total Days</span>
+                    </div>
+                </div>
+                <div class="phase-filters" id="phase-filters"></div>
+                <nav id="day-list" class="day-list"></nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Welcome Screen -->
+            <div id="welcome-screen" class="welcome-screen">
+                <div class="welcome-hero">
+                    <div class="welcome-graphic">
+                        <div class="terminal-mockup">
+                            <div class="tm-bar"><span class="tm-dot r"></span><span class="tm-dot y"></span><span class="tm-dot g"></span></div>
+                            <div class="tm-body">
+                                <div class="tm-line"><span class="tm-prompt">$</span> <span class="tm-cmd typewriter" id="welcome-typewriter"></span><span class="tm-cursor">█</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="welcome-title">Your Journey to <span class="gradient-text">Linux Mastery</span> Starts Here</h2>
+                    <p class="welcome-desc">120 days of structured learning, hands-on practice, and real-world skills. From absolute beginner to system administration pro.</p>
+                    <div class="welcome-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">📖</div>
+                            <h3>Structured Learning</h3>
+                            <p>Day-by-day curriculum with theory, examples, and explanations</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⌨️</div>
+                            <h3>Practice Terminal</h3>
+                            <p>Built-in Linux terminal simulator for hands-on practice</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏆</div>
+                            <h3>Track Progress</h3>
+                            <p>Mark days complete and track your learning streak</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🚀</div>
+                            <h3>Become a Pro</h3>
+                            <p>Cover everything from basics to advanced system administration</p>
+                        </div>
+                    </div>
+                    <button id="start-journey-btn" class="cta-button">
+                        <span>Start Day 1</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12h14m-7-7 7 7-7 7"/></svg>
+                    </button>
+                </div>
+                <div class="welcome-phases" id="welcome-phases"></div>
+            </div>
+
+            <!-- Day Content -->
+            <div id="day-content" class="day-content hidden">
+                <div class="day-header">
+                    <div class="day-nav-top">
+                        <button id="prev-day" class="nav-btn" title="Previous Day">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+                            <span>Previous</span>
+                        </button>
+                        <div class="day-badge" id="day-badge">Day 1</div>
+                        <button id="next-day" class="nav-btn" title="Next Day">
+                            <span>Next</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                    <h2 class="day-title" id="day-title"></h2>
+                    <div class="day-meta">
+                        <span class="day-phase-tag" id="day-phase-tag"></span>
+                        <span class="day-difficulty" id="day-difficulty"></span>
+                    </div>
+                </div>
+
+                <div class="day-body">
+                    <!-- Objectives -->
+                    <section class="content-card objectives-card" id="objectives-section">
+                        <div class="card-header">
+                            <span class="card-icon">🎯</span>
+                            <h3>Learning Objectives</h3>
+                        </div>
+                        <ul id="objectives-list" class="objectives-list"></ul>
+                    </section>
+
+                    <!-- Theory -->
+                    <section class="content-card theory-card" id="theory-section">
+                        <div class="card-header">
+                            <span class="card-icon">📖</span>
+                            <h3>Theory & Concepts</h3>
+                        </div>
+                        <div id="theory-content" class="theory-content"></div>
+                    </section>
+
+                    <!-- Commands -->
+                    <section class="content-card commands-card" id="commands-section">
+                        <div class="card-header">
+                            <span class="card-icon">💻</span>
+                            <h3>Commands & Syntax</h3>
+                        </div>
+                        <div id="commands-content" class="commands-content"></div>
+                    </section>
+
+                    <!-- Exercises -->
+                    <section class="content-card exercises-card" id="exercises-section">
+                        <div class="card-header">
+                            <span class="card-icon">🏋️</span>
+                            <h3>Practice Exercises</h3>
+                        </div>
+                        <div id="exercises-content" class="exercises-content"></div>
+                    </section>
+
+                    <!-- Pro Tips -->
+                    <section class="content-card tips-card" id="tips-section">
+                        <div class="card-header">
+                            <span class="card-icon">💡</span>
+                            <h3>Pro Tips</h3>
+                        </div>
+                        <div id="tips-content" class="tips-content"></div>
+                    </section>
+
+                    <!-- Day Completion -->
+                    <div class="day-completion">
+                        <button id="mark-complete-btn" class="complete-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Mark Day as Complete</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Terminal -->
+    <div id="terminal-container" class="terminal-container">
+        <div class="terminal-header" id="terminal-header">
+            <div class="terminal-dots">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+                <span class="terminal-title">Linux Terminal</span>
+            </div>
+            <div class="terminal-controls">
+                <button id="terminal-clear-btn" class="term-ctrl-btn" title="Clear">Clear</button>
+                <button id="terminal-reset-btn" class="term-ctrl-btn" title="Reset">Reset</button>
+                <button id="terminal-resize-btn" class="term-ctrl-btn resize-btn" title="Resize">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="terminal-output" class="terminal-output"></div>
+        <div class="terminal-input-container">
+            <span class="terminal-prompt" id="terminal-prompt">user@linuxmastery:~$</span>
+            <input type="text" id="terminal-input" class="terminal-input" spellcheck="false" autocomplete="off" autocapitalize="off" />
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="js/curriculum.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
